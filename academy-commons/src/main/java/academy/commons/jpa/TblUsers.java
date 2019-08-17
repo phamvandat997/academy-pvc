@@ -17,40 +17,43 @@ import org.hibernate.annotations.GenericGenerator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import academy.commons.convert.UserStatus;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  * @author DATVP.RC
  *
  */
 @Entity
-@Getter
-@Setter
 @Table(name = "tbl_users")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class TblUsers{
+public class TblUsers {
 	@Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "academy.commons.config.IDGenerate")
 	@Column(name = "id", nullable = false, length = 255)
 	private String id;
-	
+
 	private String name;
+
 	private String firstName;
+
 	private String lastName;
+
 	private String email;
+
 	private String password;
+
 	private String address;
+
 	private String phone;
+
 	private String salt;
-	
+
 	@Enumerated(EnumType.STRING)
 	private UserStatus status;
-	
+
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
-	
+
 	@Temporal(TemporalType.DATE)
 	private Date endDate;
 

@@ -1,12 +1,14 @@
 package academy.commons.repo;
 
 import javax.transaction.Transactional;
-import academy.commons.jpa.TblUsers;
-import org.springframework.data.repository.query.Param;
+
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import academy.commons.jpa.TblUsers;
 
 /**
  * @author DATVP.RC
@@ -14,10 +16,9 @@ import org.springframework.stereotype.Repository;
  */
 @Transactional
 @Repository
-public interface TblUserRepo extends CrudRepository<TblUsers,String>, JpaSpecificationExecutor<TblUsers>{
+public interface TblUserRepo extends CrudRepository<TblUsers, String>, JpaSpecificationExecutor<TblUsers> {
 
-	@Query(value = "select p from tbl_users u where u.id = :userId")
-	TblUsers findUserWithUserId(@Param("userId") String userId);
-	
-	
+	// find user by user id
+	@Query(value = "select u.* from TblUser u where u.id = :id")
+	TblUsers findOneUser(@Param("id") String id);
 }
